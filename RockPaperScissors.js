@@ -3,7 +3,9 @@ const getUserChoice = userInput => {
 
     if (userInput === 'rock' || userInput === 'scissors' || userInput === 'paper') {
         return userInput;
-    } else {
+    } else if (userInput === 'bomb') {
+        // Secret cheat code: 'bomb'
+        return userInput; } else {
         console.log('Error, invalid input');
     }
 };
@@ -26,21 +28,27 @@ function getComputerChoice() {
     }
 };
 
-function determineWinner(userChoice, getComputerChoice) {
-    if(userChoice === getComputerChoice) {
-        return console.log('The game was a tie');
+function determineWinner(userChoice, computerChoice) {
+    if (userChoice === 'bomb') {
+        return 'You won! (cheat code activated)';
     }
-    if(userChoice === 'rock') {
-        return getComputerChoice === 'paper' ? 'You lose' : 'You win'
-    } else if(userChoice === 'paper') {
-        return getComputerChoice === 'scissors' ? 'You lose' : 'You win'
-    } else if(userChoice === 'scissors') {
-        return getComputerChoice === 'rock' ? 'You lose' : 'You win'
+
+    if (userChoice === computerChoice) {
+        return 'The game was a tie';
+    } else if (userChoice === 'rock') {
+        return computerChoice === 'paper' ? 'You lose' : 'You win';
+    } else if (userChoice === 'paper') {
+        return computerChoice === 'scissors' ? 'You lose' : 'You win';
+    } else if (userChoice === 'scissors') {
+        return computerChoice === 'rock' ? 'You lose' : 'You win';
+    } else {
+        return 'Invalid input';
     }
 }
 
+
 function playGame() {
-    const userChoice = getUserChoice('rock');
+    const userChoice = getUserChoice('bomb');
     const computerChoice = getComputerChoice();
     console.log(userChoice);
     console.log(computerChoice);
